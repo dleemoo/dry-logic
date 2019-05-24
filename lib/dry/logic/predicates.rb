@@ -30,11 +30,10 @@ module Dry
         end
 
         def empty?(input)
-          case input
-          when String, Array, Hash then input.empty?
-          when nil then true
-          else
-            false
+          begin
+            input.empty?
+          rescue NoMethodError
+            input.nil?
           end
         end
 
